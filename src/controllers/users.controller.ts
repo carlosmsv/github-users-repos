@@ -19,7 +19,7 @@ export class UsersController {
     @Header('Access-Control-Allow-Origin', '*')
     @ApiQuery({name: 'since', required: false})
     public async list(@Req() request: Request): Promise<User[]> {
-        const since = Number(request.query.since ? request.query.since : 9);
+        const since = Number(request.query.since ? request.query.since : 0);
         return this.userService.listUsers(since);
     }
 

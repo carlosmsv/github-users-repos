@@ -11,7 +11,7 @@ export class UserService {
     private readonly url = 'https://api.github.com/users';
 
     public async listUsers(since: number): Promise<User[]> {
-      const usersUrl = `${this.url}?since=${since}&per_page=9?client_id=${githubClientId}&client_secret=${githubClientSecret}`;
+      const usersUrl = `${this.url}?since=${since}&client_id=${githubClientId}&client_secret=${githubClientSecret}&per_page=4`;
 
       const users: User[] = await axios.get(usersUrl).then(response => {
           return response.data;
