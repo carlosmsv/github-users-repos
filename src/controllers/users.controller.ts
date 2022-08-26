@@ -1,9 +1,9 @@
+import { ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { Controller, Get, Param, Req, Header } from '@nestjs/common';
 import { Request } from 'express';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
-import { ApiOkResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
-
+import { Repository } from '../models/repository'
 
 @Controller('api/users')
 @ApiTags('Users')
@@ -30,8 +30,17 @@ export class UsersController {
       })
     @Header('Access-Control-Allow-Origin', '*')
     public async details(@Param('login') login: string): Promise<User> {
-
         return this.userService.getUser(login);
     }
 
+    @Get(':login/repos')
+    @ApiOkResponse({
+        status: 200,
+        description: 'List all public repos from a user',
+      })
+    @Header('Access-Control-Allow-Origin', '*')
+    public async repositories(@Param('login') login: string): Promise<Repository[]> {
+        return this.userService.listRepositories(login);
+    }
+    
 }

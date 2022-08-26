@@ -7,8 +7,8 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('github-users-repos')
-    .setDescription('List users')
-    .setVersion('0.0.1')
+    .setDescription('List users, details and repositories')
+    .setVersion('1.0.0')
     .build();
 
     

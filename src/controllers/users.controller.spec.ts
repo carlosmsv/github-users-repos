@@ -54,4 +54,11 @@ describe('User Controller', () => {
     })
   })
 
+  it('should be able to get repositories from user', () => {
+    return controller.repositories('carlosmsv')
+    .then((repos) => {
+      expect(repos).toHaveLength;
+    }) 
+  })
+
 });

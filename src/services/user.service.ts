@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Injectable } from '@nestjs/common';
 import { User } from '../models/user';
+import { Repository } from '../models/repository';
 
 
 @Injectable()
@@ -27,5 +28,16 @@ export class UserService {
 
       return user;
   }
+
+  public async listRepositories(login: string): Promise<Repository[]> {
+
+    const reposUrl = `${this.url}/${login}/repos`;
+
+    const repositories: Repository[] = await axios.get(reposUrl).then(response => {
+        return response.data;
+    }).catch(err => console.error(err));
+
+    return repositories;
+}
 
 }
