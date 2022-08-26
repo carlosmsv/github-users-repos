@@ -23,4 +23,15 @@ export class UsersController {
         return this.userService.listUsers(since);
     }
 
+    @Get(':login/details')
+    @ApiOkResponse({
+        status: 200,
+        description: 'User details',
+      })
+    @Header('Access-Control-Allow-Origin', '*')
+    public async details(@Param('login') login: string): Promise<User> {
+
+        return this.userService.getUser(login);
+    }
+
 }

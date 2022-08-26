@@ -36,13 +36,22 @@ describe('User Controller', () => {
       expect(list.length).toBe(9);
     })
   })
-  
+
   it('should be able to list users, 9 at a time, starting from ', () => {
     return controller.list(requestMockWithRandomNumber)
     .then((list) => {
-      expect(list).toHaveLength;
-      expect(list.length).toBe(9);
+      expect(list).toHaveLength(9);
       expect(list[0].id).toBeGreaterThan(randomNumber)
     })
   })
+
+  it('should be able to get user details', () => {
+    return controller.details('carlosmsv')
+    .then((user) => {
+      expect(user).toBeTruthy();
+      expect(user.login).toBe('carlosmsv');
+      expect(user.id).not.toBeNaN();
+    })
+  })
+
 });
